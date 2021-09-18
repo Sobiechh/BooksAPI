@@ -1,4 +1,5 @@
 from django.core.management.base import BaseCommand
+from random_word import RandomWords
 
 from api.importer import BooksImporter
 from api.models import Book, Author, ISBN
@@ -10,6 +11,7 @@ class Command(BaseCommand):
     def __init__(self, stdout=None, stderr=None, no_color=False, force_color=False):
         super().__init__(stdout, stderr, no_color, force_color)
         self.truncate_database: bool = False
+        self.random_word = RandomWords()
 
     def add_arguments(self, parser):
         parser.add_argument('--truncate-database', default=False, action="store_true",
@@ -25,5 +27,9 @@ class Command(BaseCommand):
 
             self.stdout.write(self.style.SUCCESS('All data cleaned'))
 
-        URL = "https://www.googleapis.com/books/v1/volumes?q=python+intitle"
-        BooksImporter(URL).import_books()
+        # Return a single random word
+        word = self.random_word.get_random_word()
+        url = f'https://www.googleapis.com/books/v1/volumes?q={"None"}+intitle'
+        print(word)
+
+        BooksImporter(url).import_books()

@@ -1,3 +1,5 @@
+from pprint import pprint
+
 import requests
 
 from api.models import Book, Author, ISBN
@@ -16,7 +18,11 @@ class BooksImporter:
             url = self.url + f'&maxResults={self.step}&startIndex={start_index}'
             request = self.get_url_request(url)
 
-            for book_data in request['items']:
+            items = request.get('items')
+            if not items:
+                return
+
+            for book_data in items:
                 book_info = BooksParser().book_parser(book_data)
 
                 book, created_book = Book.objects.get_or_create(
@@ -42,6 +48,9 @@ class BooksImporter:
                     isbn.save()
 
                 book.save()
+
+            if start_index > 1:
+                pprint(f'{start_index} books downloaded')
 
     @staticmethod
     def get_url_request(url: str) -> dict:
