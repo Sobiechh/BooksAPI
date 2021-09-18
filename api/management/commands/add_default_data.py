@@ -29,7 +29,7 @@ class Command(BaseCommand):
 
         # Return a single random word
         word = self.random_word.get_random_word()
-        url = f'https://www.googleapis.com/books/v1/volumes?q={"None"}+intitle'
+        url = f'https://www.googleapis.com/books/v1/volumes?q={word}+intitle'
         print(word)
 
         BooksImporter(url).import_books()
