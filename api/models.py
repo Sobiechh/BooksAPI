@@ -5,8 +5,7 @@ class Book(models.Model):
     book_id = models.CharField(max_length=255, unique=True, primary_key=True)
     title = models.CharField(max_length=255, blank=True)
     authors = models.ManyToManyField("Author", blank=True)
-    published_year = models.IntegerField(blank=True)
-    isbns = models.ManyToManyField("ISBN", blank=True)
+    published_date = models.DateField(blank=True, null=True)
     page_count = models.IntegerField(blank=True)
     book_cover_link = models.CharField(max_length=255, blank=True)
     publication_language = models.CharField(max_length=255, blank=True)
@@ -24,7 +23,7 @@ class Author(models.Model):
 
 class ISBN(models.Model):
     isbn_id = models.CharField(max_length=255, unique=True, primary_key=True)
-    type = models.CharField(max_length=255, blank=True)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.type}'
+        return f'{self.isbn_id}'
