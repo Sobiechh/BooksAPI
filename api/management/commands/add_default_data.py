@@ -1,8 +1,7 @@
-import requests
 from django.core.management.base import BaseCommand
 
-from api.models import Book, Author, ISBN
 from api.importer import BooksImporter
+from api.models import Book, Author, ISBN
 
 
 class Command(BaseCommand):
