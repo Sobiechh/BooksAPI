@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Books list
+{% endblock %}
+
+{% block content %}
+    <div class="d-flex flex-column justify-content-md-center align-items-center vh-50">
+        <div class="d-flex flex-column justify-content-md-center align-items-center p3">
+            <form method="get" class="d-flex flex-column justify-content-md-center align-items-center p3">
+                <div class="d-flex flex-row justify-content-md-center align-items-center p-3">
+                    Title {{ filter.form.title }}
+                </div>
+                <div class="d-flex flex-row justify-content-md-center align-items-center p-3">
+                    Authors {{ filter.form.authors }}
+                </div>
+                <div class="d-flex flex-row justify-content-md-center align-items-center p-3">
+                    Start date {{ filter.form.start_date }}
+                    End date {{ filter.form.end_date }}
+                </div>
+                <div class="d-flex flex-row justify-content-md-center align-items-center p-3">
+                    <button class="btn btn-primary" type="submit"> Search</button>
+                    <a class="btn btn-warning" href="{% url 'books' %}">Reset</a>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-auto">
+            <table class="table table-striped table-hover text-center">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Author/Authors</th>
+                    <th>Published Date</th>
+                    <th>Page count</th>
+                    <th>Book cover</th>
+                    <th>Language</th>
+                    <th>ISBN</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for book in books %}
+                    <tr>
+                        <th>{{ book.book_id }}</th>
+                        <td>{{ book.title }}</td>
+                        <td>
+                            {% for author in book.authors.all %}
+                                {{ author.name }},
+                            {% endfor %}
+                        </td>
+                        <td>{{ book.published_date }}</td>
+                        {% if book.page_count > 0 %}
+                            <td>{{ book.page_count }}</td>
+                        {% else %}
+                            <td> ??</td>
+                        {% endif %}
+                        {% if book.book_cover_link %}
+                            <td><a href="{{ book.book_cover_link }}" target="_blank"> link </a></td>
+                        {% else %}
+                            <td><p>Invalid link</p></td>
+                        {% endif %}
+                        <td>{{ book.publication_language }}</td>
+                        <td>
+                            {% for isbn in book.isbn_set.all %}
+                                {{ isbn.isbn_id }},
+                            {% endfor %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
