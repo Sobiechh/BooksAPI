@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="d-flex flex-column justify-content-md-center align-items-center vh-50">
-        <h1> Edit book with id: {{ form.book_id }}</h1>
+        <h1> Edit book with id: <b>{{ book.book_id }}</b></h1>
         <form method="post" class="d-flex flex-column justify-content-md-center align-items-center vh-50">
             <table>
                 {{ form }}

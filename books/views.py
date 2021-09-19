@@ -39,7 +39,7 @@ def edit(request, pk):
     book = Book.objects.get(book_id=pk)
 
     if request.method == 'POST':
-        form = BookForm(request.POST)
+        form = BookForm(request.POST, instance=book)
         if form.is_valid():
             form.save()
             return redirect('books')
@@ -48,9 +48,10 @@ def edit(request, pk):
 
     context = {
         'form': form,
+        'book': book,
     }
 
-    return render(request, 'book_new/index.html', context)
+    return render(request, 'book_edit/index.html', context)
 
 
 def welcome(request):
