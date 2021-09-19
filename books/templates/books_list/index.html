@@ -37,6 +37,7 @@
                     <th>Book cover</th>
                     <th>Language</th>
                     <th>ISBN</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -66,6 +67,7 @@
                                 {{ isbn.isbn_id }},
                             {% endfor %}
                         </td>
+                        <td><a class="btn btn-info" href="{% url 'edit' pk=book.book_id %}">Edit</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>

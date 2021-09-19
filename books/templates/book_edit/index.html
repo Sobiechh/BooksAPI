@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} Add new book {% endblock %}
+
+{% block content %}
+    <div class="d-flex flex-column justify-content-md-center align-items-center vh-50">
+        <h1> Edit book with id: {{ form.book_id }}</h1>
+        <form method="post" class="d-flex flex-column justify-content-md-center align-items-center vh-50">
+            <table>
+                {{ form }}
+            </table>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary"> Edit</button>
+        </form>
+        <p>
+            <a href="{% url 'books' %}"> Back to books list </a>
+        </p>
+    </div>
+{% endblock %}
