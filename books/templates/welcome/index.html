@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title> Welcome </title>
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="d-flex flex-column justify-content-md-center align-items-center vh-100">
+        <div class="welcome_h1">
+            <h1>
+                Welcome to
+                <small class="text-muted">books api</small>
+            </h1>
+        </div>
+        <div>
+            <h3>
+                Click <a href="{% url 'books' %}"> here </a> to search for your book
+            </h3>
+        </div>
+    </div>
+{% endblock %}

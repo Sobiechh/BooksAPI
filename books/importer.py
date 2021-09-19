@@ -3,7 +3,7 @@ from pprint import pprint
 import requests
 
 from api.models import Book, Author, ISBN
-from api.parser import BooksParser
+from books.parser import BooksParser
 
 
 class BooksImporter:
