@@ -1,11 +1,13 @@
 from rest_framework import viewsets
 
+from .filters import BookFilter
 from .models import Book, Author, ISBN
 from .serializers import BookSerializer, AuthorSerializer, IsbnSerializer
 
 
 class BookViewset(viewsets.ModelViewSet):
     serializer_class = BookSerializer
+    filter_class = BookFilter
     queryset = Book.objects.all()
 
 
