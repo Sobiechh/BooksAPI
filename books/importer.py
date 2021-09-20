@@ -10,11 +10,16 @@ class BooksImporter:
     def __init__(self, url):
         self.url = url
         self.step = 40
+        self.request_timeout_limit = 200
 
     def import_books(self):
         raw_request: dict = self.get_url_request(self.url)
 
         for start_index in self.get_start_index(raw_request):
+            # workaround
+            if start_index > self.request_timeout_limit:
+                break
+
             url = self.url + f"&maxResults={self.step}&startIndex={start_index}"
             request = self.get_url_request(url)
 
