@@ -3,9 +3,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('books', views.books_list, name='books'),
-    path('', views.welcome, name='welcome'),
-    path('new', views.new, name='new'),
-    path('edit/<str:pk>', views.edit, name='edit'),
-    path('import', views.import_by_keyword, name='import'),
+    path("books", views.books_list, name="books"),
+    path("", views.welcome, name="welcome"),
+    path("new", views.new, name="new"),
+    path("edit/<str:pk>", views.edit, name="edit"),
+    path("import", views.import_by_keyword, name="import"),
 ]

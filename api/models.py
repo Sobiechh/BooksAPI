@@ -11,14 +11,14 @@ class Book(models.Model):
     publication_language = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
-        return f'{self.title}'
+        return f"{self.title}"
 
 
 class Author(models.Model):
     name = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
-        return f'{self.name}'
+        return f"{self.name}"
 
 
 class ISBN(models.Model):
@@ -26,4 +26,4 @@ class ISBN(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.isbn_id}'
+        return f"{self.isbn_id}"

@@ -8,34 +8,56 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Author',
+            name="Author",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(blank=True, max_length=255)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(blank=True, max_length=255)),
             ],
         ),
         migrations.CreateModel(
-            name='Book',
+            name="Book",
             fields=[
-                ('book_id', models.CharField(max_length=255, primary_key=True, serialize=False, unique=True)),
-                ('title', models.CharField(blank=True, max_length=255)),
-                ('published_date', models.DateField(blank=True, null=True)),
-                ('page_count', models.IntegerField(blank=True)),
-                ('book_cover_link', models.CharField(blank=True, max_length=255)),
-                ('publication_language', models.CharField(blank=True, max_length=255)),
-                ('authors', models.ManyToManyField(blank=True, to='api.Author')),
+                (
+                    "book_id",
+                    models.CharField(
+                        max_length=255, primary_key=True, serialize=False, unique=True
+                    ),
+                ),
+                ("title", models.CharField(blank=True, max_length=255)),
+                ("published_date", models.DateField(blank=True, null=True)),
+                ("page_count", models.IntegerField(blank=True)),
+                ("book_cover_link", models.CharField(blank=True, max_length=255)),
+                ("publication_language", models.CharField(blank=True, max_length=255)),
+                ("authors", models.ManyToManyField(blank=True, to="api.Author")),
             ],
         ),
         migrations.CreateModel(
-            name='ISBN',
+            name="ISBN",
             fields=[
-                ('isbn_id', models.CharField(max_length=255, primary_key=True, serialize=False, unique=True)),
-                ('book', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='api.book')),
+                (
+                    "isbn_id",
+                    models.CharField(
+                        max_length=255, primary_key=True, serialize=False, unique=True
+                    ),
+                ),
+                (
+                    "book",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="api.book"
+                    ),
+                ),
             ],
         ),
     ]

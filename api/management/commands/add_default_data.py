@@ -6,7 +6,7 @@ from books.importer import BooksImporter
 
 
 class Command(BaseCommand):
-    help = 'Add some default books data- used only in development'
+    help = "Add some default books data- used only in development"
 
     def __init__(self, stdout=None, stderr=None, no_color=False, force_color=False):
         super().__init__(stdout, stderr, no_color, force_color)
@@ -14,21 +14,25 @@ class Command(BaseCommand):
         self.random_word = RandomWords()
 
     def add_arguments(self, parser):
-        parser.add_argument('--truncate-database', default=False, action="store_true",
-                            help="Clean database before import")
+        parser.add_argument(
+            "--truncate-database",
+            default=False,
+            action="store_true",
+            help="Clean database before import",
+        )
 
     def handle(self, *args, **options):
-        self.truncate_database = options.get('truncate_database')
+        self.truncate_database = options.get("truncate_database")
 
         if self.truncate_database:
             Book.objects.all().delete()
             Author.objects.all().delete()
             ISBN.objects.all().delete()
 
-            self.stdout.write(self.style.SUCCESS('All data cleaned'))
+            self.stdout.write(self.style.SUCCESS("All data cleaned"))
 
         # Return a single random word
         word = self.random_word.get_random_word()
-        url = f'https://www.googleapis.com/books/v1/volumes?q={word}+intitle'
+        url = f"https://www.googleapis.com/books/v1/volumes?q={word}+intitle"
 
         BooksImporter(url).import_books()
