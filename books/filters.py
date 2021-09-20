@@ -10,9 +10,19 @@ class BookFilter(FilterSet):
             "type": "date",
         }
     )
-    start_date = DateFilter(field_name='published_date', label='From: ', lookup_expr='gte', widget=date_input)
-    end_date = DateFilter(field_name='published_date', label='To: ', lookup_expr='lte', widget=date_input)
+    start_date = DateFilter(
+        field_name="published_date",
+        label="From: ",
+        lookup_expr="gte",
+        widget=date_input,
+    )
+    end_date = DateFilter(
+        field_name="published_date", label="To: ", lookup_expr="lte", widget=date_input
+    )
 
     class Meta:
         model = Book
-        fields = ('title', 'authors',)
+        fields = (
+            "title",
+            "authors",
+        )

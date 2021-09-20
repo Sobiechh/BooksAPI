@@ -9,31 +9,31 @@ from api.models import Book
 class BookForm(ModelForm):
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = "__all__"
         widgets = {
-            'published_date': DateInput(
+            "published_date": DateInput(
                 attrs={
-                    'type': 'date',
+                    "type": "date",
                 }
             )
         }
 
     def clean_published_date(self):
-        published_date = self.cleaned_data.get('published_date')
+        published_date = self.cleaned_data.get("published_date")
 
         if not published_date:
-            raise ValidationError('Fill this field')
+            raise ValidationError("Fill this field")
 
         if published_date > date.today():
-            raise ValidationError('How can you predict the future?')
+            raise ValidationError("How can you predict the future?")
 
         return published_date
 
     def clean_page_count(self):
-        page_count = self.cleaned_data.get('page_count')
+        page_count = self.cleaned_data.get("page_count")
 
         if not page_count:
-            raise ValidationError('Fill this field')
+            raise ValidationError("Fill this field")
 
         return page_count
 
@@ -42,9 +42,9 @@ class ImportForm(Form):
     keyword = CharField()
 
     def clean_keyword(self):
-        keyword = self.cleaned_data.get('keyword')
+        keyword = self.cleaned_data.get("keyword")
 
         if not keyword:
-            raise ValidationError('Insert keyword')
+            raise ValidationError("Insert keyword")
 
         return keyword
