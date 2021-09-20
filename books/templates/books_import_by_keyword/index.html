@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
-{% block title %} Edit book {% endblock %}
+{% block title %} Import books {% endblock %}
 
 {% block content %}
     <div class="d-flex flex-column justify-content-md-center align-items-center vh-50">
-        <h1> Edit book with id: <b>{{ book.book_id }}</b></h1>
+        <h1> Import books by keywords</h1>
         <form method="post" class="d-flex flex-column justify-content-md-center align-items-center vh-50">
-            <table>
-                {{ form }}
-            </table>
+            <div class="d-flex flex-row justify-content-md-center align-items-center vh-50 p-5">
+                Keyword {{ form.keyword }}
+            </div>
             {% csrf_token %}
-            <button type="submit" class="btn btn-primary"> Edit</button>
+            <button type="submit" class="btn btn-primary"> Import</button>
         </form>
         <p>
             <a href="{% url 'books' %}"> Back to books list </a>

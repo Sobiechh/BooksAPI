@@ -1,8 +1,8 @@
 from django.core.management.base import BaseCommand
 from random_word import RandomWords
 
-from books.importer import BooksImporter
 from api.models import Book, Author, ISBN
+from books.importer import BooksImporter
 
 
 class Command(BaseCommand):

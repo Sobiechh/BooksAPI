@@ -1,7 +1,7 @@
 from datetime import date
 
 from django.core.exceptions import ValidationError
-from django.forms import ModelForm, DateInput
+from django.forms import ModelForm, DateInput, Form, CharField
 
 from api.models import Book
 
@@ -36,3 +36,15 @@ class BookForm(ModelForm):
             raise ValidationError('Fill this field')
 
         return page_count
+
+
+class ImportForm(Form):
+    keyword = CharField()
+
+    def clean_keyword(self):
+        keyword = self.cleaned_data.get('keyword')
+
+        if not keyword:
+            raise ValidationError('Insert keyword')
+
+        return keyword

@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.welcome, name='welcome'),
     path('new', views.new, name='new'),
     path('edit/<str:pk>', views.edit, name='edit'),
+    path('import', views.import_by_keyword, name='import'),
 ]

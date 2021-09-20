@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 
 from api.models import Book
 from books.filters import BookFilter
-from books.forms import BookForm
+from books.forms import BookForm, ImportForm
+from books.importer import BooksImporter
 
 
 def books_list(request):
@@ -52,6 +53,25 @@ def edit(request, pk):
     }
 
     return render(request, 'book_edit/index.html', context)
+
+
+def import_by_keyword(request):
+    if request.method == 'POST':
+        form = ImportForm(request.POST)
+        if form.is_valid():
+            keyword = form.cleaned_data['keyword']
+            url = f'https://www.googleapis.com/books/v1/volumes?q={keyword}'
+            BooksImporter(url).import_books()
+
+            return redirect('books')
+    else:
+        form = ImportForm()
+
+    context = {
+        'form': form,
+    }
+
+    return render(request, 'books_import_by_keyword/index.html', context)
 
 
 def welcome(request):

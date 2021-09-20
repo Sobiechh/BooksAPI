@@ -7,6 +7,11 @@
 {% block content %}
     <div class="d-flex flex-column justify-content-md-center align-items-center vh-50">
         <div class="d-flex flex-column justify-content-md-center align-items-center p3">
+            <h4> Import books by keyword </h4>
+            <a class="btn btn-secondary" href="{% url 'import' %}">Here</a>
+        </div>
+        <hr style="margin-top: 1rem; margin-bottom: 1rem; border: 0; border-top: 1px solid black"/>
+        <div class="d-flex flex-column justify-content-md-center align-items-center p3">
             <form method="get" class="d-flex flex-column justify-content-md-center align-items-center p3">
                 <div class="d-flex flex-row justify-content-md-center align-items-center p-3">
                     Title {{ filter.form.title }}
