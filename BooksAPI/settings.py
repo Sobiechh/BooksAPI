@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-^vr(ouu-k*j0@zv2(tseo-7g$7%b(6!mup*=1qe#02p!jn!06@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'sampledomain.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'https://sobiech-books-api.herokuapp.com/']
 
 # Application definition
 
